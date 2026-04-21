@@ -6,8 +6,12 @@ st.title("🛒 Flipkart Customer Review Analyzer")
 # Upload CSV
 uploaded_file = st.file_uploader("Upload your dataset", type=["csv"])
 
-if uploaded_file:
+# Default dataset use karega agar user kuch upload na kare
+if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
+else:
+    df = pd.read_csv("Dataset-SA.csv")
+    st.info("Using sample dataset. You can upload your own file.")
 
     st.subheader(" Dataset Preview")
     st.dataframe(df.head())
